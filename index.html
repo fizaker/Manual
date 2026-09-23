@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NFT Gifts — Мануалы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f1115;
+    --bg-soft: #161a21;
+    --card: #1a1f28;
+    --border: #262c38;
+    --text: #e6e9ef;
+    --text-dim: #9aa3b2;
+    --accent: #7c9cff;
+    --accent-2: #8ef0d0;
+    --warn: #ffb87c;
+    --radius: 14px;
+    --max: 1080px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    background: rgba(15, 17, 21, 0.85);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+  .logo {
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo-dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--accent-2);
+    box-shadow: 0 0 12px var(--accent-2);
+  }
+  .nav-links {
+    display: flex;
+    gap: 22px;
+    font-size: 14px;
+  }
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+  }
+
+  .hero {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 90px 24px 60px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+    background: var(--bg-soft);
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 22px;
+  }
+  .hero h1 span {
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero p {
+    font-size: 17px;
+    color: var(--text-dim);
+    max-width: 640px;
+  }
+
+  section {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+  .section-head {
+    margin-bottom: 32px;
+  }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .section-head h2 {
+    font-size: clamp(24px, 3.5vw, 32px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .map-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .map-card {
+    display: block;
+    padding: 22px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text);
+    transition: all .25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .map-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    background: var(--bg-soft);
+  }
+  .map-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .map-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .map-card p {
+    font-size: 13.5px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .manual {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 34px 32px;
+    margin-bottom: 20px;
+    scroll-margin-top: 90px;
+  }
+  @media (max-width: 600px) {
+    .manual { padding: 24px 20px; }
+  }
+  .manual-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .manual-num {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(124,156,255,0.15), rgba(142,240,208,0.1));
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .manual-header h3 {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .manual p {
+    color: var(--text-dim);
+    margin-bottom: 14px;
+    font-size: 15px;
+  }
+  .manual strong { color: var(--text); font-weight: 600; }
+
+  .manual ol, .manual ul {
+    margin: 14px 0 14px 4px;
+    padding-left: 22px;
+  }
+  .manual li {
+    color: var(--text-dim);
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+  .manual li strong { color: var(--text); }
+
+  .quote {
+    background: var(--bg);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 14.5px;
+    color: var(--text);
+    white-space: pre-line;
+    line-height: 1.65;
+  }
+  .quote.mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13.5px;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 6px;
+    background: rgba(124,156,255,0.12);
+    color: var(--accent);
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    margin-right: 6px;
+  }
+
+  a.link {
+    color: var(--accent-2);
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(142,240,208,0.4);
+    transition: all .2s;
+  }
+  a.link:hover {
+    border-bottom-color: var(--accent-2);
+    color: var(--text);
+  }
+
+  .note {
+    background: rgba(255,184,124,0.07);
+    border: 1px solid rgba(255,184,124,0.2);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 14px;
+    color: var(--warn);
+    margin: 16px 0;
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+    padding: 40px 24px;
+    text-align: center;
+  }
+  footer .foot-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+  footer p {
+    font-size: 13px;
+    color: var(--text-dim);
+    max-width: 640px;
+    margin: 0 auto 10px;
+  }
+  footer .disclaimer {
+    font-size: 12px;
+    color: #6b7382;
+    margin-top: 20px;
+    line-height: 1.6;
+  }
+
+  .to-top {
+    position: fixed;
+    right: 24px; bottom: 24px;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .3s;
+    font-size: 18px;
+  }
+  .to-top.show { opacity: 1; pointer-events: auto; }
+  .to-top:hover { border-color: var(--accent); color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo"><span class="logo-dot"></span>NFT Gifts · Мануалы</div>
+    <nav class="nav-links">
+      <a href="#map">Карта</a>
+      <a href="#m1">Отс-бот</a>
+      <a href="#m2">Поиск</a>
+      <a href="#m3">Флеш</a>
+      <a href="#m4">Профиль</a>
+      <a href="#m5">Вечный СБ</a>
+      <a href="#m6">Твинки</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <span class="badge">Гайд по активной скупке NFT-подарков в Telegram</span>
+  <h1>Как находить <span>хорошие цели</span> для активной скупки подарков</h1>
+  <p>Практическое руководство для тех, кто уже в теме: от настройки отс-бота до правильного профиля и работы с флеш-токенами. Всё разбито по блокам — выбирай нужный ниже.</p>
+</div>
+
+<section id="map">
+  <div class="section-head">
+    <div class="section-label">Навигация</div>
+    <h2>Что где находится</h2>
+  </div>
+  <div class="map-grid">
+    <a href="#m1" class="map-card">
+      <div class="map-num">01</div>
+      <h3>Отс-бот</h3>
+      <p>Авто-гарант бот с воркер-панелью для удобной работы</p>
+    </a>
+    <a href="#m2" class="map-card">
+      <div class="map-num">02</div>
+      <h3>Поиск</h3>
+      <p>Какие цели по профилю искать, а какие обходить стороной</p>
+    </a>
+    <a href="#m3" class="map-card">
+      <div class="map-num">03</div>
+      <h3>Флеш</h3>
+      <p>Специальные токены для акций на Trust Wallet</p>
+    </a>
+    <a href="#m4" class="map-card">
+      <div class="map-num">04</div>
+      <h3>Профиль</h3>
+      <p>Залог успеха на 60% — как правильно оформить аккаунт</p>
+    </a>
+    <a href="#m5" class="map-card">
+      <div class="map-num">05</div>
+      <h3>Снятие вечного СБ</h3>
+      <p>Шаблон обращения в поддержку для снятия ограничений</p>
+    </a>
+    <a href="#m6" class="map-card">
+      <div class="map-num">06</div>
+      <h3>Покупка твинков</h3>
+      <p>Площадки для покупки аккаунтов под работу</p>
+    </a>
+  </div>
+</section>
+
+<section id="manual">
+
+  <div class="section-head">
+    <div class="section-label">Мануалы</div>
+    <h2>Пошаговые блоки</h2>
+  </div>
+
+  <article class="manual" id="m1">
+    <div class="manual-header">
+      <div class="manual-num">01</div>
+      <h3>Отс-бот</h3>
+    </div>
+    <p><strong>Авто-гарант бот с воркер-панелью.</strong> Это ключевой инструмент для безопасной и быстрой работы с целями. Воркер-панель — это дополнительная кнопка, которая позволяет воркеру удобнее управлять сделками прямо из интерфейса бота.</p>
+    <ul>
+      <li><strong>Авто-гарант</strong> — сделка проводится без ручного участия, снижает риск скама.</li>
+      <li><strong>Воркер-панель</strong> — отдельная кнопка для воркера, ускоряет обработку заявок.</li>
+      <li>Настраивается под конкретный формат работы команды.</li>
+    </ul>
+    <div class="note">Инструмент настраивается индивидуально под вашу схему работы. Без него масштабная скупка быстро превращается в хаос.</div>
+  </article>
+
+  <article class="manual" id="m2">
+    <div class="manual-header">
+      <div class="manual-num">02</div>
+      <h3>Поиск</h3>
+    </div>
+    <p><strong>Какие цели по профилю нужно искать, а каких — нет.</strong> От качества отбора целей зависит вся дальнейшая конверсия. Не каждый профиль подходит для работы.</p>
+    <ul>
+      <li>Ищите <strong>живые, обустроенные</strong> профили с активностью.</li>
+      <li>Обходите стороной профили-пустышки, без истории и контента.</li>
+      <li>Оценивайте профиль по косвенным признакам: канал, описание, оформление.</li>
+      <li>Не работайте с явно «палевными» аккаунтами — они приносят проблемы, а не профит.</li>
+    </ul>
+  </article>
+
+  <article class="manual" id="m3">
+    <div class="manual-header">
+      <div class="manual-num">03</div>
+      <h3>Флеш</h3>
+    </div>
+    <p><strong>Специальные выпущенные токены для покупки определённых акций на Trust Wallet.</strong> Флеш используется для проведения акций и взаимодействия с целевой аудиторией через Trust Wallet.</p>
+    <ul>
+      <li>Токены выпускаются под конкретные акции.</li>
+      <li>Покупка производится через <strong>Trust Wallet</strong>.</li>
+      <li>Инструмент работает в связке с правильно оформленным профилем и отс-ботом.</li>
+    </ul>
+  </article>
+
+  <article class="manual" id="m4">
+    <div class="manual-header">
+      <div class="manual-num">04</div>
+      <h3>Профиль</h3>
+    </div>
+    <p><strong>Ваш профиль — это залог успеха на 60%!</strong> Поэтому стоит отнестись к этому ответственно. Для начала стираете весь ваш профиль до нуля и начинаете строить новый.</p>
+
+    <p><strong>Критерии:</strong></p>
+    <ol>
+      <li>Не должно быть много мусора по типу тон-адреса в адресе.</li>
+      <li><strong>ВООБЩЕ не употребляйте слова</strong> (скуп, гарант, %, нфт и всё, что связано с этим).</li>
+      <li>В описание ставите цитаты — если парную с твинком, будет вообще идеально. Либо же ставите простую фразу не более двух строк.</li>
+      <li>Делаете себе канал либо же покупаете хороший с отлегой и где есть много соо, и полностью обустраиваете личный канал простейший — не связанный с нфт, а просто с какой-то деятельностью из жизни: эдиты, фотки, щп и много чего другого.</li>
+      <li>
+        <strong>Главный вопрос: быть девочкой или мальчиком?</strong><br>
+        Вопрос индивидуальный. Если умеете хорошо наливать воду в уши — то подойдёт больше мальчиком и мальчиком цели. Если же вы можете тупить и более просто говорить — то лучше косить под девочку. Этакая связь будет образовываться в общении, соответственно — доверие.<br>
+        А вообще лично я советую делать профиль с неопределённым полом: вроде девочка, а вроде мальчик — и быть кем-то под ситуацию.
+      </li>
+      <li>
+        Обустроить профиль нфтшками. Заходите на <a class="link" href="https://marketapp.org" target="_blank" rel="noopener">marketapp.org</a> и выбираете себе одноцветные фоном нфт — желательно ряд или два — и ставите их себе в профиль.<br>
+        На счёт юзов советую брать лишь один NFT-юз и ставить себе в профиль, убирая обычный юз. Так же советую брать авы, которые очень сильно сливаются с фоном нфт, чтобы был эффект монохрома в профиле.
+      </li>
+      <li>Если лень всё это читать — то просто ориентируйтесь на профиль обычных людей.</li>
+    </ol>
+  </article>
+
+  <article class="manual" id="m5">
+    <div class="manual-header">
+      <div class="manual-num">05</div>
+      <h3>Снятие вечного СБ в Telegram</h3>
+    </div>
+    <p>Для беспрерывной работы важно уметь снимать ограничения. Ниже — рабочий шаблон обращения в поддержку. Замените <code style="color:var(--accent-2)">@твой_username</code> на свой.</p>
+
+    <div class="quote mono">Здравствуйте.
+
+Я обнаружил, что на мой аккаунт @твой_username наложены ограничения за действия, которых я не совершал.
+
+У меня есть основания полагать, что мой аккаунт был временно скомпрометирован, и сторонняя сторона могла использовать его без моего ведома для рассылки спама. Я уже принял меры для защиты аккаунта: проверил активные сессии и обновил пароль двухфакторной аутентификации.
+
+Данный аккаунт критически важен для моей работы и личных коммуникаций. Я никогда не использовал его для нарушения правил сервиса.
+
+Прошу немедленно пересмотреть решение автоматической системы, учитывая факт возможного несанкционированного доступа, и восстановить полный функционал моего аккаунта @твой_username. Готов предоставить любую дополнительную информацию для проверки.</div>
+  </article>
+
+  <article class="manual" id="m6">
+    <div class="manual-header">
+      <div class="manual-num">06</div>
+      <h3>Сайты для покупки твинков</h3>
+    </div>
+    <p>Для работы потребуются дополнительные аккаунты. Ниже — площадки, где их можно приобрести:</p>
+    <ul>
+      <li><a class="link" href="https://lzt.market" target="_blank" rel="noopener">lzt.market</a></li>
+      <li><a class="link" href="https://tronaccs.market" target="_blank" rel="noopener">tronaccs.market</a></li>
+    </ul>
+    <div class="note">Работайте только через проверенные площадки и всегда проверяйте репутацию продавца.</div>
+  </article>
+
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <p>NFT Gifts · Мануалы — практическое руководство по работе с NFT-подарками в Telegram.</p>
+    <p class="disclaimer">Материал носит информационный характер и предназначен для ознакомления. Автор не призывает к нарушению правил сервисов. Все действия вы совершаете на свой страх и риск.</p>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Наверх">↑</button>
+
+<script>
+  const btn = document.getElementById('toTop');
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('show', window.scrollY > 400);
+  });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  const links = document.querySelectorAll('.nav-links a');
+  const sections = [...links].map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = '#' + s.id;
+    });
+    links.forEach(l => {
+      l.style.color = l.getAttribute('href') === current ? 'var(--text)' : '';
+    });
+  });
+</script>
+
+</body>
+</html>
